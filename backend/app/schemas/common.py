@@ -113,3 +113,14 @@ class CsvPreviewRow(BaseModel):
     ticker: str
     side: str
     note: str | None
+class TagCreate(BaseModel):
+    name: str = Field(..., min_length=1, max_length=64)
+    color: str = Field(default="#38bdf8", pattern=r"^#[0-9a-fA-F]{6}$")
+
+
+class TagOut(BaseModel):
+    id: int
+    name: str
+    color: str
+
+    model_config = {"from_attributes": True}
